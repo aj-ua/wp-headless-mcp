@@ -116,7 +116,7 @@ export async function createServerFactory(config: Config): Promise<ServerFactory
   const canManageMenus = can(user, 'edit_theme_options');
 
   return () => {
-    const server = new McpServer({ name: 'wp-headless-mcp', version: '0.8.0' }, { instructions });
+    const server = new McpServer({ name: 'wp-headless-mcp', version: '1.0.0' }, { instructions });
 
     // Read tools: every profile.
     registerContentTools(server, wp, site, posts, acfSearch);

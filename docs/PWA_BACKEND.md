@@ -23,6 +23,14 @@ MCP_HTTP_HOST=127.0.0.1
 MCP_HTTP_PORT=3333
 ```
 
+Start it from npm, with the settings above in the environment:
+
+```
+npx -y wp-headless-mcp
+```
+
+Or from a clone of the repository, where `npm start` reads them from `.env`:
+
 ```
 npm run build
 npm start

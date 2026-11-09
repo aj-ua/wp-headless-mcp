@@ -1,0 +1,64 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.aj-ua/wp-headless-mcp",
+  "title": "WordPress Headless",
+  "description": "Read WordPress content, ACF fields, and Yoast SEO data, and safely edit drafts.",
+  "version": "1.0.0",
+  "websiteUrl": "https://github.com/aj-ua/wp-headless-mcp#readme",
+  "repository": {
+    "url": "https://github.com/aj-ua/wp-headless-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "wp-headless-mcp",
+      "version": "1.0.0",
+      "runtimeHint": "npx",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        {
+          "name": "WP_URL",
+          "description": "Base URL of the WordPress site, without a trailing slash",
+          "isRequired": true,
+          "format": "string"
+        },
+        {
+          "name": "MCP_PROFILE",
+          "description": "Tool profile: public (read published content), editor (adds draft-only editing), or dev (adds developer tools)",
+          "format": "string",
+          "choices": ["public", "editor", "dev"],
+          "default": "public"
+        },
+        {
+          "name": "WP_USER",
+          "description": "WordPress user for the Application Password (editor and dev profiles)",
+          "format": "string"
+        },
+        {
+          "name": "WP_APP_PASSWORD",
+          "description": "WordPress Application Password (editor and dev profiles)",
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "WP_CACHE_TTL",
+          "description": "Seconds to cache GET requests; 0 turns caching off",
+          "format": "number",
+          "default": "60"
+        },
+        {
+          "name": "ACF_JSON_PATH",
+          "description": "Absolute path to the theme's acf-json folder, for ACF labels, schemas, and TypeScript types",
+          "format": "filepath"
+        },
+        {
+          "name": "MCP_CPTS",
+          "description": "Custom post type tools: auto, none, or a JSON array of {postType, singular, plural}",
+          "format": "string",
+          "default": "auto"
+        }
+      ]
+    }
+  ]
+}
