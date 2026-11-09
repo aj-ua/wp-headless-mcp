@@ -137,18 +137,14 @@ The `dev` profile's `check_site_requirements` tool checks these for you.
 
 Requirements: Node.js 22 or newer, and a WordPress site whose REST API is reachable.
 
-```
-npm install
-cp .env.example .env
-npm run build
-```
+There's nothing to install: MCP clients start the server with `npx -y wp-headless-mcp` and pass the settings as environment variables. Set at least `WP_URL`. For the editor or dev profile, also create an Application Password (wp-admin → Users → Profile → Application Passwords, ideally for a dedicated user with the Editor role) and set `WP_USER` and `WP_APP_PASSWORD`. All settings: [Configuration](#configuration).
 
-Edit `.env` and set at least `WP_URL`. For the editor or dev profile, also create an Application Password (wp-admin → Users → Profile → Application Passwords, ideally for a dedicated user with the Editor role) and set `WP_USER` and `WP_APP_PASSWORD`.
+The server is also listed in the [MCP Registry](https://registry.modelcontextprotocol.io) as `io.github.aj-ua/wp-headless-mcp`.
 
 ### Try it in the MCP Inspector
 
 ```
-npm run inspect
+npx @modelcontextprotocol/inspector -e WP_URL=http://aj-ua.local -- npx -y wp-headless-mcp
 ```
 
 The Inspector opens in the browser. Click Connect, then try the tools, resources, and prompts.
@@ -156,7 +152,7 @@ The Inspector opens in the browser. Click Connect, then try the tools, resources
 ### Connect Claude Code
 
 ```
-claude mcp add wp-headless-mcp -e WP_URL=http://aj-ua.local -- node /absolute/path/to/wp-headless-mcp/dist/index.js
+claude mcp add wp-headless-mcp -e WP_URL=http://aj-ua.local -- npx -y wp-headless-mcp
 ```
 
 Add `-e MCP_PROFILE=editor -e WP_USER=... -e WP_APP_PASSWORD=...` for the editing tools.
@@ -169,8 +165,8 @@ Add the server to `~/Library/Application Support/Claude/claude_desktop_config.js
 {
   "mcpServers": {
     "wordpress": {
-      "command": "node",
-      "args": ["/absolute/path/to/wp-headless-mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "wp-headless-mcp"],
       "env": {
         "WP_URL": "http://aj-ua.local",
         "MCP_PROFILE": "editor",
@@ -189,7 +185,7 @@ Run the server in HTTP mode and call it from the backend. Setup, security, and r
 
 ## Configuration
 
-All settings are environment variables, read from the environment or `.env`.
+All settings are environment variables. MCP clients pass them when they start the server (`-e` in Claude Code, `env` in Claude Desktop). When running from source, the npm scripts also read `.env`.
 
 | Variable                        | Default     | Purpose                                                                                                                     |
 | ------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------- |
@@ -267,6 +263,20 @@ All profiles:
 | `weekly_content_report`   | `editor`         | Recent changes, drafts waiting for review, and top issues |
 
 ## Development
+
+### Run from source
+
+```
+git clone https://github.com/aj-ua/wp-headless-mcp.git
+cd wp-headless-mcp
+npm install
+cp .env.example .env
+npm run build
+```
+
+Edit `.env` and set at least `WP_URL`. `npm start`, `npm run dev`, and `npm run inspect` read it. To connect an MCP client to your local build, use `node /absolute/path/to/wp-headless-mcp/dist/index.js` in place of `npx -y wp-headless-mcp`, and pass the settings as environment variables.
+
+### Scripts
 
 | Command                                  | What it does                                                                          |
 | ---------------------------------------- | ------------------------------------------------------------------------------------- |
