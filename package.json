@@ -1,0 +1,70 @@
+{
+  "name": "wp-headless-mcp",
+  "version": "0.8.0",
+  "description": "MCP server exposing WordPress content, ACF fields, and Yoast SEO data to AI assistants",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "node ./node_modules/typescript7/bin/tsc",
+    "dev": "tsx --env-file-if-exists=.env src/index.ts",
+    "start": "node --env-file-if-exists=.env dist/index.js",
+    "typecheck": "node ./node_modules/typescript7/bin/tsc --noEmit",
+    "inspect": "npx @modelcontextprotocol/inspector tsx --env-file-if-exists=.env src/index.ts",
+    "typecheck:examples": "node ./node_modules/typescript7/bin/tsc -p examples/tsconfig.json",
+    "example:client": "tsx --env-file-if-exists=.env examples/ask-site-mcp-client.ts",
+    "example:connector": "tsx --env-file-if-exists=.env examples/ask-site-mcp-connector.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck:tests": "node ./node_modules/typescript7/bin/tsc -p tests/tsconfig.json",
+    "check": "npm run typecheck && npm run typecheck:tests && npm run typecheck:examples && npm run lint && npm run format:check && npm test"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "wordpress",
+    "headless-wordpress",
+    "acf",
+    "yoast",
+    "claude",
+    "ai"
+  ],
+  "author": "Andrii Shamardak (https://aj-ua.com/)",
+  "license": "MIT",
+  "homepage": "https://github.com/aj-ua/wp-headless-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aj-ua/wp-headless-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aj-ua/wp-headless-mcp/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "turndown": "^7.2.5",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^1.6.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.6",
+    "@types/turndown": "^5.0.6",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.10",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "typescript7": "npm:typescript@^7.0.2",
+    "vitest": "^5.1.0"
+  },
+  "type": "module",
+  "bin": {
+    "wp-headless-mcp": "dist/index.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

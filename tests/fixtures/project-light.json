@@ -1,0 +1,27 @@
+{
+    "id": 310,
+    "type": "project",
+    "link": "http://aj-ua.local/project/acme/",
+    "title": {
+        "rendered": "Acme"
+    },
+    "acf": {
+        "subtitle": "Company website",
+        "url": "https://acme.test",
+        "info": "Website for web agency (UK).\r\n\r\n- CMS: WordPress (custom template development based on a given design);\r\n- Gutenberg + ACF;\r\n- HTML5, SCSS, ES6;\r\n- custom REST endpoints and filtering;\r\n- WebGL and JS-animations using GreenSock (GSAP);",
+        "images": [
+            {
+                "image": 313,
+                "desc": "Home page template"
+            },
+            {
+                "image": 315,
+                "desc": "Single Case Study CPT"
+            },
+            {
+                "image": 317,
+                "desc": "Single Report CPT"
+            }
+        ]
+    }
+}
