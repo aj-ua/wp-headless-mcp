@@ -3,7 +3,7 @@
   "name": "io.github.aj-ua/wp-headless-mcp",
   "title": "WordPress Headless",
   "description": "Read WordPress content, ACF fields, and Yoast SEO data, and safely edit drafts.",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "websiteUrl": "https://github.com/aj-ua/wp-headless-mcp#readme",
   "repository": {
     "url": "https://github.com/aj-ua/wp-headless-mcp",
@@ -13,7 +13,7 @@
     {
       "registryType": "npm",
       "identifier": "wp-headless-mcp",
-      "version": "0.8.0",
+      "version": "1.0.0",
       "runtimeHint": "npx",
       "transport": { "type": "stdio" },
       "environmentVariables": [
